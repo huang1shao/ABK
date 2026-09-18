@@ -62,7 +62,7 @@ ABK 的目标是把手动 fork、启用 Actions、填写 GKI 或 OnePlus/Oplus �
 App 的“构建内核”页可在 `GKI` 和 `OnePlus` 两种目标间切换。选择 `OnePlus` 后，App 会派发 [`oneplus-custom.yml`](.github/workflows/oneplus-custom.yml)，并通过 OnePlus/Oplus manifest 拉取对应 CPU 分支和机型 XML。
 ABK 不再把 `_b/_v/_u/_t` 当作用户选择规则；App、工作流摘要和矩阵任务名会直接显示机型、ColorOS/OxygenOS 系统线、Android KMI 和 CPU，上游 XML 名称只保留为仓库初始化参数。
 
-首版 OnePlus 构建支持 `android12/5.10`、`android13/5.15`、`android14/6.1`、`android15/6.6`，可选 KernelSU Official、KernelSU Next、SukiSU、ReSukiSU 或无 Root 内核。OnePlus 专用开关包括 SUSFS、KPM、lz4kd、BBG、BBR、代理优化和 Unicode 零宽绕过修复；SUSFS 仅在 `android14/6.1` 与 `android15/6.6` 生效，`android12/5.10` 和 `android13/5.15` 会自动关闭；MTK CPU 分支会强制关闭代理优化。
+OnePlus 构建支持 `android12/5.10`、`android13/5.15`、`android14/6.1`、`android15/6.6`、`android16/6.12`，其中 OnePlus 15/15T 使用 `sm8850` 的 `android16/6.12` manifest。可选 KernelSU Official、SukiSU、ReSukiSU 或无 Root 内核。OnePlus 专用开关包括 SUSFS、KPM、lz4kd、BBG、BBR、代理优化和 Unicode 零宽绕过修复；SUSFS 在 `android14/6.1`、`android15/6.6` 与 `android16/6.12` 生效，6.12 会自动关闭不兼容的 legacy lz4kd，MTK CPU 分支会强制关闭代理优化。
 
 需要批量构建当前支持的全部 OnePlus/Oplus 机型时，可在 GitHub Actions 手动触发 [`oneplus-full-feature-matrix.yml`](.github/workflows/oneplus-full-feature-matrix.yml)。矩阵会读取上游 manifest，按 CPU 分支和 KMI 线生成构建任务。
 如果要一次性触发 GKI 与 OnePlus 的全部管理器类型全矩阵编译，可使用 [`all-managers-full-feature-matrix.yml`](.github/workflows/all-managers-full-feature-matrix.yml)，并通过输入项控制是否包含某个变体、是否跑 GKI 或 OnePlus，以及常用构建自定义项。
@@ -246,7 +246,7 @@ App 编译工作流（`Build ABK App` / `Build ABK App (dev)`）通过仓库变�
 
 以下列表按当前 git 历史归一化到可识别的 GitHub 用户名/链接，并按用户名排序；自动化账号与无法可靠映射的身份已过滤：
 
-[@Akuma-Noko](https://github.com/Akuma-Noko)、[@DebugBoard](https://github.com/DebugBoard)、[@DreamFerry](https://github.com/DreamFerry)、[@elysias123](https://github.com/elysias123)、[@Fede2782](https://github.com/Fede2782)、[@FixeQyt](https://github.com/FixeQyt)、[@FunLay123](https://github.com/FunLay123)、[@gsf114](https://github.com/gsf114)、[@guruji-byte](https://github.com/guruji-byte)、[@huime180](https://github.com/huime180)、[@liqideqq](https://github.com/liqideqq)、[@LX200944](https://github.com/LX200944)、[@Mazha0309](https://github.com/Mazha0309)、[@MiRinChan](https://github.com/MiRinChan)、[@prpjzz](https://github.com/prpjzz)、[@ReeViiS69](https://github.com/ReeViiS69)、[@ShirkNeko](https://github.com/ShirkNeko)、[@Starsun](https://github.com/Starsun)、[@TheSillyOk](https://github.com/TheSillyOk)、[@TheWildJames](https://github.com/TheWildJames)、[@Tools-cx-app](https://github.com/Tools-cx-app)、[@ukriu](https://github.com/ukriu)、[@wrnxr233](https://github.com/wrnxr233)、[@Xiaomichael](https://github.com/Xiaomichael)、[@xingguangcuican6666](https://github.com/xingguangcuican6666)、[@yx1234587](https://github.com/yx1234587)、[@zzh20188](https://github.com/zzh20188)。
+[@Akuma-Noko](https://github.com/Akuma-Noko)、[@DebugBoard](https://github.com/DebugBoard)、[@DreamFerry](https://github.com/DreamFerry)、[@elysias123](https://github.com/elysias123)、[@fanziyun](https://github.com/fanziyun)、[@Fede2782](https://github.com/Fede2782)、[@FixeQyt](https://github.com/FixeQyt)、[@FunLay123](https://github.com/FunLay123)、[@gsf114](https://github.com/gsf114)、[@guruji-byte](https://github.com/guruji-byte)、[@huime180](https://github.com/huime180)、[@liqideqq](https://github.com/liqideqq)、[@LX200944](https://github.com/LX200944)、[@Mazha0309](https://github.com/Mazha0309)、[@MiRinChan](https://github.com/MiRinChan)、[@prpjzz](https://github.com/prpjzz)、[@ReeViiS69](https://github.com/ReeViiS69)、[@ShirkNeko](https://github.com/ShirkNeko)、[@Starsun](https://github.com/Starsun)、[@TheSillyOk](https://github.com/TheSillyOk)、[@TheWildJames](https://github.com/TheWildJames)、[@Tools-cx-app](https://github.com/Tools-cx-app)、[@ukriu](https://github.com/ukriu)、[@wrnxr233](https://github.com/wrnxr233)、[@Xiaomichael](https://github.com/Xiaomichael)、[@xingguangcuican6666](https://github.com/xingguangcuican6666)、[@yx1234587](https://github.com/yx1234587)、[@zzh20188](https://github.com/zzh20188)。
 
 ## 开放源代码许可
 
@@ -267,8 +267,8 @@ App 编译工作流（`Build ABK App` / `Build ABK App (dev)`）通过仓库变�
 
 | 项目 | 地址 | 许可证 |
 | --- | --- | --- |
-| zzh20188/GKI_KernelSU_SUSFS | <https://github.com/zzh20188/GKI_KernelSU_SUSFS> | 上游仓库许可证 |
-| WildKernels/GKI_KernelSU_SUSFS | <https://github.com/WildKernels/GKI_KernelSU_SUSFS> | 上游仓库许可证 |
+| zzh20188/GKI_KernelSU_SUSFS | <https://github.com/zzh20188/GKI_KernelSU_SUSFS> | GPL-2.0 |
+| WildKernels/GKI_KernelSU_SUSFS | <https://github.com/WildKernels/GKI_KernelSU_SUSFS> | 上游仓库许可证 / 未检测到 SPDX |
 | CodeLinaro CLO LA | <https://git.codelinaro.org/clo/la> | 顶层上游各项目许可证 |
 | OnePlusOSS/kernel_manifest | <https://github.com/OnePlusOSS/kernel_manifest> | 上游仓库许可证 / 未检测到 SPDX |
 | Xiaomichael/kernel_manifest | <https://github.com/Xiaomichael/kernel_manifest> | 上游仓库许可证 / 未检测到 SPDX |
@@ -281,17 +281,17 @@ App 编译工作流（`Build ABK App` / `Build ABK App (dev)`）通过仓库变�
 | ShirkNeko/susfs4ksu | <https://github.com/ShirkNeko/susfs4ksu> | GPL-2.0 |
 | SukiSU_patch | <https://github.com/ShirkNeko/SukiSU_patch> | GPL-2.0 |
 | AnyKernel3 | <https://github.com/WildKernels/AnyKernel3> | GPL-2.0 |
-| Xiaomichael/AnyKernel3 | <https://github.com/Xiaomichael/AnyKernel3> | 上游仓库许可证 / NOASSERTION |
+| Xiaomichael/AnyKernel3 | <https://github.com/Xiaomichael/AnyKernel3> | [Custom License](https://github.com/Xiaomichael/AnyKernel3/blob/master/LICENSE) |
 | WildKernels/kernel_patches | <https://github.com/WildKernels/kernel_patches> | GPL-2.0 |
 | cctv18/susfs4oki | <https://github.com/cctv18/susfs4oki> | GPL-3.0 |
-| SukiSU_KernelPatch_patch | <https://github.com/SukiSU-Ultra/SukiSU_KernelPatch_patch> | 上游仓库许可证 |
-| Action-Build | <https://github.com/Numbersf/Action-Build> | 上游仓库许可证 |
-| SUSFS 模块构建来源 | <https://github.com/sidex15/susfs4ksu-module> | 上游仓库许可证 |
+| SukiSU_KernelPatch_patch | <https://github.com/SukiSU-Ultra/SukiSU_KernelPatch_patch> | GPL-2.0 |
+| Action-Build | <https://github.com/Numbersf/Action-Build> | [Custom License](https://github.com/Numbersf/Action-Build/blob/SukiSU-Ultra/LICENSE) |
+| SUSFS 模块构建来源 | <https://github.com/sidex15/susfs4ksu-module> | AGPL-3.0 |
 | GCC prebuilts | <https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-gnu-6.4.1> | GPL-family toolchain notices |
-| Baseband Guard | <https://github.com/vc-teahouse/Baseband-guard> | 上游仓库许可证 |
-| Re-Kernel | <https://github.com/Sakion-Team/Re-Kernel> | 上游仓库许可证 |
-| Droidspaces / 虚拟化支持补丁来源 | <https://github.com/ravindu644/Droidspaces-OSS> | 上游仓库许可证 |
-| ABK_repo 模块仓库 | <https://github.com/xingguangcuican6666/ABK_repo> | 上游仓库许可证 |
+| Baseband Guard | <https://github.com/vc-teahouse/Baseband-guard> | GPL-2.0 |
+| Re-Kernel | <https://github.com/Sakion-Team/Re-Kernel> | GPL-2.0 |
+| Droidspaces / 虚拟化支持补丁来源 | <https://github.com/ravindu644/Droidspaces-OSS> | GPL-3.0 |
+| ABK_repo 模块仓库 | <https://github.com/xingguangcuican6666/ABK_repo> | GPL-3.0 |
 | AOSP kernel/common、manifest、mkbootimg、build-tools | <https://android.googlesource.com/> | GPL-2.0 / Apache-2.0 / AOSP notices |
 | Android GKI certified boot images / command line tools | <https://dl.google.com/android/> | Android 分发条款 / Android SDK License |
 

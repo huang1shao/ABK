@@ -109,11 +109,11 @@ on:
 
       # ==================== ZRAM 扩展选项 ====================
       zram_full_algo:
-        description: "启用 ZRAM 完整算法支持（LZO/LZ4/LZ4HC/LZ4K/LZ4KD/DEFLATE/842/ZSTD，默认 lzo-rle）"
+        description: "启用 ZRAM 完整算法支持（6.12 自动跳过 legacy LZ4K/LZ4KD/LZ4K_OPLUS）"
         type: boolean
         default: false
       zram_extra_algos:
-        description: "自定义 ZRAM 算法（逗号分隔，如 lzo,lz4,deflate,zstd；仅在未启用完整算法时生效）"
+        description: "自定义 ZRAM 算法（逗号分隔，如 lzo,lz4,deflate,zstd；6.12 会忽略 lz4k/lz4kd/lz4k_oplus）"
         type: string
         default: ""
         required: false
@@ -124,15 +124,16 @@ on:
         type: string
         default: ""
         required: false
-      use_custom_external_modules:
-        description: "启用自定义外部模块注入"
-        type: boolean
-        default: false
       custom_external_modules:
         description: "自定义外部模块（兼容旧 repo;stage，也支持 module:repo;stage 与 set:repo#child;stage，用 | 分隔）"
         type: string
         default: ""
         required: false
+      custom_kernel_options:
+        description: "自定义内核选项（每行一条 Kconfig/defconfig 片段）"
+        required: false
+        type: string
+        default: ""
 
       # ==================== 构建版本选择 ====================
       build_a12_5_10:
@@ -192,8 +193,8 @@ jobs:
       zram_full_algo: ${{ inputs.zram_full_algo }}
       zram_extra_algos: ${{ inputs.zram_extra_algos || '' }}
       kpm_password: ${{ inputs.kpm_password || '' }}
-      use_custom_external_modules: ${{ inputs.use_custom_external_modules || false }}
       custom_external_modules: ${{ inputs.custom_external_modules || '' }}
+      custom_kernel_options: ${{ inputs.custom_kernel_options || '' }}
       called_from_main: true
 
   # ==================== Android 13 - 5.15 构建 ====================
@@ -218,8 +219,8 @@ jobs:
       zram_full_algo: ${{ inputs.zram_full_algo }}
       zram_extra_algos: ${{ inputs.zram_extra_algos || '' }}
       kpm_password: ${{ inputs.kpm_password || '' }}
-      use_custom_external_modules: ${{ inputs.use_custom_external_modules || false }}
       custom_external_modules: ${{ inputs.custom_external_modules || '' }}
+      custom_kernel_options: ${{ inputs.custom_kernel_options || '' }}
       called_from_main: true
 
   # ==================== Android 14 - 6.1 构建 ====================
@@ -244,8 +245,8 @@ jobs:
       zram_full_algo: ${{ inputs.zram_full_algo }}
       zram_extra_algos: ${{ inputs.zram_extra_algos || '' }}
       kpm_password: ${{ inputs.kpm_password || '' }}
-      use_custom_external_modules: ${{ inputs.use_custom_external_modules || false }}
       custom_external_modules: ${{ inputs.custom_external_modules || '' }}
+      custom_kernel_options: ${{ inputs.custom_kernel_options || '' }}
       called_from_main: true
 
   # ==================== Android 15 - 6.6 构建 ====================
@@ -270,8 +271,8 @@ jobs:
       zram_full_algo: ${{ inputs.zram_full_algo }}
       zram_extra_algos: ${{ inputs.zram_extra_algos || '' }}
       kpm_password: ${{ inputs.kpm_password || '' }}
-      use_custom_external_modules: ${{ inputs.use_custom_external_modules || false }}
       custom_external_modules: ${{ inputs.custom_external_modules || '' }}
+      custom_kernel_options: ${{ inputs.custom_kernel_options || '' }}
       called_from_main: true
 
   # ==================== Android 16 - 6.12 构建 ====================
@@ -296,8 +297,8 @@ jobs:
       zram_full_algo: ${{ inputs.zram_full_algo }}
       zram_extra_algos: ${{ inputs.zram_extra_algos || '' }}
       kpm_password: ${{ inputs.kpm_password || '' }}
-      use_custom_external_modules: ${{ inputs.use_custom_external_modules || false }}
       custom_external_modules: ${{ inputs.custom_external_modules || '' }}
+      custom_kernel_options: ${{ inputs.custom_kernel_options || '' }}
       called_from_main: true
 
   # ==================== 收集补丁冲突文件 ====================
